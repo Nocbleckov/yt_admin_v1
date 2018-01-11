@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+	<title>Inicio de Sesión</title>
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+</head>
+<body>
+	<div class="container">
+
+		<div class="row text-center title-label">
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<h2>
+					Inicia Sesión
+				</h2>
+			</div>
+		</div>
+
+		<div class="row text-center">
+			<div class="input-group col-sm-12 col-md-6 col-lg-6">
+				<input id="tx_nombreUsuario" class="form-control" type="text" placeholder="Nombre de Usuario">
+				<div class="input-group-prepend">
+					<button class="btn btn-outline-secondary" type="button">
+						<i class="fa fa-user-circle-o"></i>
+					</button>
+				</div>
+			</div>
+			<div class="input-group col-sm-12 col-md-6 col-lg-6">
+				<input id="tx_password" type="password" class="form-control" placeholder="Contraseña">
+			</div>
+		</div>	
+		<div class="row text-center btn-collection">
+			<div class="input-group col-sm-12 col-md-6 col-lg-6">
+				<button id="btn_login" class="btn btn-primary" type="button">
+					<i class="fa fa-sign-in"></i> Ingresar
+				</button>
+			</div>
+			<div class="input-group col-sm-12 col-md-6 col-lg-6">
+				<button id="btn_registro" class="btn btn-dark" type="button">
+					<i class="fa fa-globe"></i> Registrate
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="assets/js/jquery.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+	<script type="text/javascript" src="assets/js/index.js"></script>
+	<script src="https://apis.google.com/js/api.js"></script>
+
+	<script type="text/javascript">
+		var key = "AIzaSyD6-FIASfSMJH36me_ROIHvFtrnXvVW4OI";
+		var CLIENT_ID = "602606606274-ecquf7or8dp2fs51q332hqrt7sdk55eu.apps.googleusercontent.com";
+		var SCOPE = 'https://www.googleapis.com/auth/youtube';
+		var playlistId, nextPageToken, prevPageToken;
+		$(document).ready(function(){
+			var GoogleAuth;
+			gapi.load('client:auth2',iniciarGAPI);
+		});
+	</script>
+
+</body>
+</html>
