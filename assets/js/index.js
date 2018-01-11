@@ -17,7 +17,7 @@
 
 function iniciarGAPI(){
 	var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
-	
+
 	gapi.client.init({
 		'apiKey': key,
 		'discoveryDocs': [discoveryUrl],
@@ -42,17 +42,44 @@ function iniciarGAPI(){
 
 }
 
+function onSignIn(googleUser){
+	var id_token = googleUser.getAuthResponse().id_token;
+	startSession(id_token);
+}
+
+function startSession(id_token){
+
+	data = {
+		id_token : id_token
+	};
+
+	$.ajax({
+		url : 'http://localhost:8080/back_ytadmin/authUser.php',
+		data : data,
+		type : 'POST',
+		dataType :'json',
+		success : function(json){
+			console.log(json);
+		},
+		error : function(xhr,status){
+			console.log(xhr);
+			console.log(status);
+		}
+	});
+}
+
 function handleAuthClick() {
 	if (GoogleAuth.isSignedIn.get()) {
       // User is authorized and has clicked 'Sign out' button.
       GoogleAuth.signOut();
   } else {
       // User is not signed in. Start Google auth flow.
-      GoogleAuth.signIn();
+      GoogleAuth.signIn().then(onSignIn);
   }
 }
 
 function updateSigninStatus(isSignedIn){
+	console.log(isSignedIn);
 	if(isSignedIn){
 		var request = gapi.client.youtube.channels.list({
 			mine: true,
