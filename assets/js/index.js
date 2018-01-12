@@ -48,7 +48,6 @@ function onSignIn(googleUser){
 }
 
 function startSession(id_token){
-
 	data = {
 		id_token : id_token
 	};
@@ -58,6 +57,27 @@ function startSession(id_token){
 		data : data,
 		type : 'POST',
 		dataType :'json',
+		success : function(json){
+			console.log(json.session_token);
+			console.log(json.id_token);
+			validateSession(json.session_token);
+		},
+		error : function(xhr,status){
+			console.log(xhr);
+			console.log(status);
+		}
+	});
+}
+
+function validateSession(session_token){
+	data = {
+		session_token : session_token
+	};
+	$.ajax({
+		url : 'http://localhost:8080/back_ytadmin/authUser.php',
+		data : data,
+		type : 'POST',
+		dataType : 'json',
 		success : function(json){
 			console.log(json);
 		},
